@@ -32,6 +32,7 @@ class App extends Component {
         const loading = this.state.persons.length === 0;
         return (
             <div className="outer">
+
                 <div className="toppanel">
 
                 </div>

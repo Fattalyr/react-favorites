@@ -22,10 +22,10 @@ body {
 	color:#fff;
 }
 
-a:link {color:#61dafb;}
-a:visited {color:#61dafb;}
-a:hover {color:#61dafb;}
-a:active {color:#61dafb;}
+a:link {color:#fff;}
+a:visited {color:#fff;}
+a:hover {color:#fff;}
+a:active {color:#fff;}
 
 .outer {
 	max-width:812px;
@@ -47,42 +47,42 @@ a:active {color:#61dafb;}
 	position:relative;
 	z-index:2;
 }
-	.button::before {
-		position:absolute;
-		top:0;
-		left:0;
-		display:block;
-		content:"";
-		background:#fff;
-		opacity:.2;
-		width:100%;
-		height:100%;
-		z-index:1;
-	}
-	.button.active {
-		color:#4ce4e4;
-	}
-	.button_round {
-		width:50px;
-	}
-	.button_round:before {
-		border-radius:25px;
-	}
-	.button_low-rounded:before {
-		border-radius:12px;
-	}
-	.button_save {
-		border:none;
-		color:#fff;
-	}
-	.button_save:before {
-		transition:.3s;
-		background:#08d425;
-		opacity:.7;
-	}
-	.button_save:hover:before {
-		opacity:1;
-	}
+.button:before {
+	position:absolute;
+	top:0;
+	left:0;
+	display:block;
+	content:"";
+	background:#fff;
+	opacity:.2;
+	width:100%;
+	height:100%;
+	z-index:1;
+}
+.button.active {
+	color:#4ce4e4;
+}
+.button_round {
+	width:50px;
+}
+.button_round:before {
+	border-radius:25px;
+}
+.button_low-rounded:before {
+	border-radius:12px;
+}
+.button_save {
+	border:none;
+	color:#fff;
+}
+.button_save:before {
+	transition:.3s;
+	background:#08d425;
+	opacity:.7;
+}
+.button_save:hover:before {
+	opacity:1;
+}
 
 /* Список друзей */
 ul.friends-list {
@@ -90,40 +90,50 @@ ul.friends-list {
 	padding:0 2px 2px 2px;
 	list-style-type:none;
 }
-	ul.friends-list>li {
-		overflow:hidden;
-		display:flex;
-		position:relative;
-		justify-content:space-between;
-		padding:12px 20px;
-		line-height:24px;
-		margin:0 0 2px 0;
+ul.friends-list>li {
+	overflow:hidden;
+	display:flex;
+	position:relative;
+	justify-content:space-between;
+	padding:12px 20px;
+	line-height:24px;
+	margin:0 0 2px 0;
+}
+ul.friends-list>li:last-child {
+	margin-bottom:0;
+}
+ul.friends-list>li.selected {
+	color:#24bbbb;
+}
+ul.friends-list>li.selected a {
+	color:#24bbbb;
+}
+ul.friends-list li:before {
+	display:block;
+	content:"";
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	background:#fff;
+	opacity:.3;
+	z-index:1;
+}
+ul.friends-list>li.selected:before {
+	opacity:.7;
+}
+ul.friends-list>li span {
+	position:relative;
+	z-index:2;
+}
+.friend-name {
+	width:100%;
+	margin-right:20px;
+}
+
+@media (max-width: 560px) {
+	h1 {
+		font-size:28px;
 	}
-	ul.friends-list>li:last-child {
-		margin-bottom:0;
-	}
-	ul.friends-list>li.selected {
-		color:#24bbbb;
-	}
-	ul.friends-list>li.selected a {
-		color:#24bbbb;
-	}
-	ul.friends-list li:before {
-		display:block;
-		content:"";
-		position:absolute;
-		top:0;
-		right:0;
-		bottom:0;
-		left:0;
-		background:#fff;
-		opacity:.3;
-		z-index:1;
-	}
-	ul.friends-list>li.selected:before {
-		opacity:.7;
-	}
-		ul.friends-list>li span {
-			position:relative;
-			z-index:2;
-		}
+}
