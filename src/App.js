@@ -9,8 +9,18 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            persons: []
+            persons: [],
+            selected: null
         }
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(id) {
+        const person = this.state.persons.find((item) => item._id == id);
+        if (person !== undefined) {
+            this.setState({selected: person});
+        }
+        alert(person.name, person.sex, person._id);
     }
 
     componentWillMount() {
@@ -42,7 +52,11 @@ class App extends Component {
                 </div>
                 {loading
                     ? 'Loading persons ...'
-                    :  <List persons={this.state.persons} />
+                    :  <List
+                        persons={this.state.persons}
+                        selected={this.state.selected}
+                        onClick={this.handleClick}
+                       />
                 }
 
             </div>

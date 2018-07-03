@@ -3,9 +3,13 @@ import './Li.css';
 
 export default class Li extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
 	render() {
 		return (
-			<li>{this.props.person.name}</li>
+			<li onClick={this.props.onClick}>{this.props.person.name}</li>
 		);
 	}
 }

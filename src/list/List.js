@@ -11,11 +11,13 @@ class List extends Component {
 	render() {
 		return (
 			<ul className="friends-list">
-                {this.props.persons.map((obj, i) => <Li
-                    key={this.props.persons[i]._id}
-                    person={this.props.persons[i]}
-                    onClick={() => console.log(i)}
-                />)}
+                {this.props.persons.map((obj, i) =>
+					<Li
+						key={this.props.persons[i]._id}
+						person={this.props.persons[i]}
+						onClick={() => this.props.onClick(this.props.persons[i]._id)}
+					/>
+				)}
             </ul>
 		);
 	}
