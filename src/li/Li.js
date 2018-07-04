@@ -9,7 +9,11 @@ export default class Li extends Component {
 
 	render() {
 		return (
-			<li onClick={this.props.onClick}>{this.props.person.name}</li>
+			<li
+				onClick={this.props.onClick}
+			>
+				{this.props.person.name}
+			</li>
 		);
 	}
 }

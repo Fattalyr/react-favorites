@@ -3,9 +3,14 @@ import './Edit.css';
 
 class Edit extends Component {
 
+    handleChange(e) {
+        this.props.onChange(e.target.value);
+    }
+
 	render() {
+        const name = this.props.selected.name;
 		return (
-			<li>{this.props.person.name}</li>
+			<input value={name} onChange={this.handleChange} />
 		);
 	}
 }
