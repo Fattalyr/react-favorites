@@ -8,11 +8,12 @@ export default class Li extends Component {
     }
 
 	render() {
+        let name = this.props.person.name;
 		return (
 			<li
 				onClick={this.props.onClick}
 			>
-				{this.props.person.name}
+				{name}
 			</li>
 		);
 	}

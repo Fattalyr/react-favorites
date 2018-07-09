@@ -12,8 +12,9 @@ class App extends Component {
         this.state = {
             persons: [],
             selected: null
-        }
+        };
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleClick(id) {
@@ -21,12 +22,18 @@ class App extends Component {
         if (person !== undefined) {
             this.setState({selected: person});
         }
-        alert(person.name, person.sex, person._id);
+        console.log(person.name + ' ' + person.gender + ' ' + person._id);
     }
 
     handleChange(e) {
-        // this.setState({temperature: e.target.value});
-        alert('HandleChange works!');
+        // this.setState({selected: e.target.value});
+        // let person = this.state.persons.filter(item => item._id === e._id);
+        let newSelected = Object.assign(this.state.selected, {name: e});
+        let newFriendsList = this.state.persons.slice();
+        let pos = newFriendsList.findIndex(item => item._id === this.state.selected._id);
+        newFriendsList[pos].name = e;
+        this.setState({selected: newSelected});
+        this.setState({persons: newFriendsList});
     }
 
     componentWillMount() {
