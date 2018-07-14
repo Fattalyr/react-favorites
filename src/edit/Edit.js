@@ -14,12 +14,18 @@ class Edit extends Component {
     }
 
 	render() {
-        const name = this.props.selected.name;
+        console.log(this.props);
+        const selected = this.props.selected !== null;
+        const name = (this.props.selected !== undefined) && selected ? this.props.selected.name : null;
 		return (
-			<input
-                value={name}
-                onChange={this.handleChange}
-            />
+            <div>
+                {selected
+                    ? <input
+                        value={name}
+                        onChange={this.handleChange}
+                    /> : 'Nothing is selected yet.'
+                }
+            </div>
 		);
 	}
 }

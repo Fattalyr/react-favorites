@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import List from './list/List.js';
 import Edit from './edit/Edit.js';
 import './App.css';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
 
@@ -64,13 +65,11 @@ class App extends Component {
                     <div className="header__logo"><img className="logo" src={logo} alt="" /></div>
                     <div className="header__header"><h1>React List Manager</h1></div>
                 </div>
-                {selected
-                    ? <Edit
-                        selected={this.state.selected}
-                        onChange={this.handleChange}
-                    />
-                    : 'Nothing is selected yet.'
-                }
+                <Route
+                    path='/edit/:id'
+                    render={(props) => <Edit selected={this.state.selected} onChange={this.handleChange} {...props} />}
+                />
+
 
                 {loading
                     ? 'Loading persons ...'
