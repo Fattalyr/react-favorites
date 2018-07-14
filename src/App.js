@@ -4,7 +4,13 @@ import logo from './logo.svg';
 import List from './list/List.js';
 import Edit from './edit/Edit.js';
 import './App.css';
-import { Route } from 'react-router-dom';
+import {
+    Route,
+    Switch,
+    Redirect,
+    NavLink,
+    Link
+} from 'react-router-dom';
 
 class App extends Component {
 
@@ -59,26 +65,43 @@ class App extends Component {
             <div className="outer">
 
                 <div className="toppanel">
-
+                    <NavLink
+                        activeClassName="active"
+                        to="/list/"
+                        className="button button_round"
+                    >
+                        <i className="fa fa-address-book" />
+                    </NavLink>
                 </div>
                 <div className="header">
-                    <div className="header__logo"><img className="logo" src={logo} alt="" /></div>
+                    <div className="header__logo">
+                        <Link to="/">
+                            <img className="logo" src={logo} alt="" />
+                        </Link>
+                    </div>
                     <div className="header__header"><h1>React List Manager</h1></div>
                 </div>
-                <Route
-                    path='/edit/:id'
-                    render={(props) => <Edit selected={this.state.selected} onChange={this.handleChange} {...props} />}
-                />
 
+                <Switch>
+                    <Redirect from="/" exact to="/list/" />
+                    <Route
+                        path='/edit/:id'
+                        render={(props) => <Edit selected={this.state.selected} onChange={this.handleChange} {...props} />}
+                    />
+                    <Route
+                        path='/list/'
+                        render={(props) => <List persons={this.state.persons} selected={this.state.selected} onClick={this.handleClick} {...props} />}
+                    />
+                </Switch>
 
-                {loading
-                    ? 'Loading persons ...'
-                    :  <List
-                        persons={this.state.persons}
-                        selected={this.state.selected}
-                        onClick={this.handleClick}
-                       />
-                }
+                {/*{loading*/}
+                    {/*? 'Loading persons ...'*/}
+                    {/*:  <List*/}
+                        {/*persons={this.state.persons}*/}
+                        {/*selected={this.state.selected}*/}
+                        {/*onClick={this.handleClick}*/}
+                       {/*/>*/}
+                {/*}*/}
 
             </div>
         );

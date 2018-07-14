@@ -17,18 +17,8 @@
 	top:0;
 	left:0;
 	display:flex;
-	z-index:10;
-}
-.toppanel:before {
-	position:absolute;
-	display:block;
-	content:"";
-	top:0;
-	right:0;
-	bottom:0;
-	left:0;
-	background:#fff;
-	opacity:.4;
+	z-index:2;
+	background-color:rgba(255, 255, 255, .4);
 	-webkit-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.75);
 	-moz-box-shadow:    0 3px 15px 0 rgba(0, 0, 0, 0.75);
 	box-shadow:         0 3px 15px 0 rgba(0, 0, 0, 0.75);
@@ -52,6 +42,11 @@
 	justify-content:center;
 	align-items:center;
 	width:20%;
+}
+.header__logo a {
+	display:block;
+	text-decoration:none;
+	width:100%;
 }
 .header__logo img {
 	display:block;
