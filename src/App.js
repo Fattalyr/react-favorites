@@ -18,10 +18,20 @@ class App extends Component {
         super();
         this.state = {
             persons: [],
+            page: {title: 'Главная'},
             selected: null
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handlePageDataChange = this.handlePageDataChange.bind(this);
+    }
+
+    handlePageDataChange(data) {
+        if (typeof(data) === 'object') {
+            if (typeof(data.title) === 'string') {
+                this.setState({page: data});
+            }
+        }
     }
 
     handleClick(id) {
@@ -79,18 +89,20 @@ class App extends Component {
                             <img className="logo" src={logo} alt="" />
                         </Link>
                     </div>
-                    <div className="header__header"><h1>React List Manager</h1></div>
+                    <div className="header__header">
+                        <h1>{this.state.page.title || 'React List Manager'}</h1>
+                    </div>
                 </div>
 
                 <Switch>
                     <Redirect from="/" exact to="/list/" />
                     <Route
                         path='/edit/:id'
-                        render={(props) => <Edit selected={this.state.selected} onChange={this.handleChange} {...props} />}
+                        render={(props) => <Edit selected={this.state.selected} onChange={this.handleChange} onTitleChange={this.handlePageDataChange} {...props} />}
                     />
                     <Route
                         path='/list/'
-                        render={(props) => <List persons={this.state.persons} selected={this.state.selected} onClick={this.handleClick} {...props} />}
+                        render={(props) => <List persons={this.state.persons} selected={this.state.selected} onClick={this.handleClick} onTitleChange={this.handlePageDataChange} {...props} />}
                     />
                 </Switch>
 

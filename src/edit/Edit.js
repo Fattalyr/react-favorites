@@ -8,6 +8,18 @@ class Edit extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    pageData = {
+        title: 'Редактирование друга'
+    };
+
+    onTitleChange = () => {
+        this.props.onTitleChange(this.pageData);
+    };
+
+    componentDidMount() {
+        this.onTitleChange();
+    }
+
     handleChange(e) {
         console.log(e.target.value);
         this.props.onChange(e.target.value);

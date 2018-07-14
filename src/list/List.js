@@ -8,6 +8,18 @@ class List extends Component {
         super(props);
     }
 
+    pageData = {
+    	title: 'Список друзей'
+	};
+
+    onTitleChange = () => {
+		this.props.onTitleChange(this.pageData);
+	};
+
+    componentDidMount() {
+    	this.onTitleChange();
+	}
+
 	render() {
 		return (
 			<ul className="friends-list">
