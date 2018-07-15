@@ -4,10 +4,6 @@ import './List.css';
 
 class List extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     pageData = {
     	title: 'Список друзей'
 	};

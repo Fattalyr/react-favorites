@@ -35,7 +35,7 @@ class App extends Component {
     }
 
     handleClick(id) {
-        const person = this.state.persons.find((item) => item._id == id);
+        const person = this.state.persons.find((item) => item._id === id);
         if (person !== undefined) {
             this.setState({selected: person});
         }
@@ -69,8 +69,6 @@ class App extends Component {
 
     }
     render() {
-        const loading = this.state.persons.length === 0;
-        let selected = this.state.selected !== null;
         return (
             <div className="outer">
 
@@ -105,15 +103,6 @@ class App extends Component {
                         render={(props) => <List persons={this.state.persons} selected={this.state.selected} onClick={this.handleClick} onTitleChange={this.handlePageDataChange} {...props} />}
                     />
                 </Switch>
-
-                {/*{loading*/}
-                    {/*? 'Loading persons ...'*/}
-                    {/*:  <List*/}
-                        {/*persons={this.state.persons}*/}
-                        {/*selected={this.state.selected}*/}
-                        {/*onClick={this.handleClick}*/}
-                       {/*/>*/}
-                {/*}*/}
 
             </div>
         );
