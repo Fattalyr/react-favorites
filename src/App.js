@@ -3,6 +3,7 @@ import axios from 'axios';
 import logo from './logo.svg';
 import List from './list/List.js';
 import Edit from './edit/Edit.js';
+import Favorites from './favorites/Favorites.js';
 import './App.css';
 import {
     Route,
@@ -80,6 +81,13 @@ class App extends Component {
                     >
                         <i className="fa fa-address-book" />
                     </NavLink>
+                    <NavLink
+                        activeClassName="active"
+                        to="/favorites/"
+                        className="button button_round"
+                    >
+                        <i className="fa fa-heart" />
+                    </NavLink>
                 </div>
                 <div className="header">
                     <div className="header__logo">
@@ -100,7 +108,12 @@ class App extends Component {
                     />
                     <Route
                         path='/list/'
+                        exact
                         render={(props) => <List persons={this.state.persons} selected={this.state.selected} onClick={this.handleClick} onTitleChange={this.handlePageDataChange} {...props} />}
+                    />
+                    <Route
+                        path='/favorites/'
+                        render={(props) => <Favorites persons={this.state.persons} onClick={this.handleClick} onTitleChange={this.handlePageDataChange} {...props} />}
                     />
                 </Switch>
 
