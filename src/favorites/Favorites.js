@@ -11,50 +11,37 @@ class Favorites extends Component {
 
     storage = new LocalStorageService();
 
-    favorites = [];
-
-    favoritesFilled = false;
-
     onTitleChange = () => {
 		this.props.onTitleChange(this.pageData);
 	};
 
     componentDidMount() {
     	this.onTitleChange();
-        this.fillFavorites();
-        console.log(this.favorites);
 	}
 
-    fillFavorites() {
-    	let all = this.storage.getAll();
-    	if (all === undefined) { return; }
-    	if (this.props.persons.length === 0) { return; }
-        for (const item in all) {
-    		if (all.hasOwnProperty(item)) {
-                if (all[item].favorite !== undefined) {
-                	if (all[item].favorite === true) {
-                        console.log(item, all[item].favorite);
-                        const element = this.props.persons.find(el => el._id === item);
-                        this.favorites.push(element);
-					}
-                }
-			}
-		}
-        this.favoritesFilled = true;
+    checkIfFavorite(person) {
+    	if (person === undefined) { return false; }
+    	let id = person._id;
+    	let data = this.storage.getValue(id);
+    	if (data === undefined) { return false; }
+    	if (data.favorite === undefined) { return false; }
+    	if (data.favorite === true) { return true; }
 	}
 
 	render() {
 		return (
 			<ul className="friends-list">
                 {
-                	this.favoritesFilled && this.favorites.length > 0 ?
-					(this.favorites.map((obj, i) =>
-						<Li
-                            key={this.favorites[i]._id}
-                            person={this.favorites[i]}
-                            onClick={() => this.props.onClick(this.favorites[i]._id)}
-						/>
-					)) :
+                    this.props.persons.length > 0 ?
+					(this.props.persons.map((obj, i) => {
+						if (this.checkIfFavorite(obj)) {
+                            return <Li
+                                key={this.props.persons[i]._id}
+                                person={this.props.persons[i]}
+                                onClick={() => this.props.onClick(this.props.persons[i]._id)}
+                            />
+						}
+					})) :
                 'Loading favorites.'}
             </ul>
 		);
