@@ -104,7 +104,7 @@ class App extends Component {
                     <Redirect from="/" exact to="/list/" />
                     <Route
                         path='/edit/:id'
-                        render={(props) => <Edit selected={this.state.selected} onChange={this.handleChange} onTitleChange={this.handlePageDataChange} {...props} />}
+                        render={(props) => <Edit persons={this.state.persons} selected={this.state.selected} onChange={this.handleChange} onTitleChange={this.handlePageDataChange} {...props} />}
                     />
                     <Route
                         path='/list/'

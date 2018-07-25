@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Stars } from '../stars/Stars.js';
 import './Edit.css';
 import { LocalStorageService } from '../services/';
 
@@ -41,12 +42,20 @@ class Edit extends Component {
 
     componentDidMount() {
         this.onTitleChange();
-        this.storage.setValue('selected', this.props.selected);
-        if (this.props.selected !== undefined && this.props.selected !== null) {
-            this.id = this.props.selected._id;
+        // this.storage.setValue('selected', this.props.selected);
+        // if (this.props.selected !== undefined && this.props.selected !== null) {
+        //     this.id = this.props.selected._id;
+        //     const friendData = this.readFromStorage(this.id);
+        //     this.isFavorite = friendData.favorite !== undefined ? friendData.favorite : false;
+        // }
+
+        if (this.props.match.params.id !== undefined && this.props.match.params.id !== '') {
+            this.storage.setValue('selected', this.props.match.params.id);
+            this.id = this.props.match.params.id;
             const friendData = this.readFromStorage(this.id);
             this.isFavorite = friendData.favorite !== undefined ? friendData.favorite : false;
         }
+        console.log(this.props.match.params.id);
     }
 
     handleChange(e) {
@@ -122,6 +131,11 @@ class Edit extends Component {
                                         <label htmlFor="friend-card__favorite">избранная</label> :
                                         <label htmlFor="friend-card__favorite">избранный</label>
                                 }
+                            </div>
+                        </div>
+                        <div className="friend-card__row">
+                            <div className="friend-card__cell friend-card__cell_double friend-card__cell_ta-center">
+                                <Stars person={{id}} />
                             </div>
                         </div>
                     </div>
